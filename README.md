@@ -2,11 +2,13 @@
 
 Framer.js module that simplifies the process of adding text to your prototypes.
 
+![TextLayer](http://cl.ly/image/3q2m1q1w0x2w/TextLayer.png)
+
 ## Installation
 
-1. Download the textLayer.coffee file
-2. Create a framer project and drop textLayer.coffee inside the /modules folder
-3. Add `TextLayer = require 'textlayer'` at the top of your document
+1. Download the textlayer.coffee file
+2. Create a framer project and drop textlayer.coffee inside the /modules folder
+3. Add `TextLayer = require 'textlayer'` at the top of your document (case-sensitive).
 
 
 More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules]http://framerjs.com/docs/#modules)
@@ -26,21 +28,28 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 		fontFamily: "Georgia"
 		
 	t.center()
-	
-### Positioning and layout using the .setup guide
 
-	t = new TextLayer
-		text: "This is a headline"
-		setup: true
-		x: 210
-		paddingLeft: 10
-	
 ### AutoSize based on text length and styling
 
 	t = new TextLayer
 		autoSize: true
-		text: "This text is longer than 100px, but it's ok"
+		text: "This text is longer than 100px, but that's ok"	
+
+### Positioning and layout using the .setup guide
+	
+	t = new TextLayer
+		text: "This is a headline"
+		setup: true
+		width: 180
+		height: 25
+		paddingLeft: 20
 		
+### Make text editable by user (input fields)
+
+	t = new TextLayer 
+		contentEditable: true
+		width: 200
+			
 ### Create a quick list of text
 
 	for fruit, i in ["Apple", "Pear", "Kiwi", "Banana"]
@@ -51,41 +60,39 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 ## Properties
 
-**.text** (string)
+**.text** (string) - your text content
 
-**.fontFamily** (string)
+**.fontFamily** (string) - font. eg. "Arial", "Lato"
 
-**.fontSize** (number)
+**.fontSize** (number) - size of font
 
-**.color** (string) (part of Layer)
+**.color** (string) - color of text
 
-**.lineHeight** (number)
+**.lineHeight** (number) - line height (default is 1.25)
 
-**.fontWeight** (string)
+**.fontWeight** (string) - weight of font
 
-**.paddingTop** (number)
+**.paddingTop** (number) - padding above text
 
-**.paddingRight** (number)
+**.paddingRight** (number) - padding on right side of text
 
-**.paddingBottom** (number)
+**.paddingBottom** (number) - padding below the text
 
-**.paddingLeft** (number)
+**.paddingLeft** (number) - padding on left side of text
 
-**.textAlign** (string)
+**.textAlign** (string) - adjust alignment
 
-**.length** (number)
+**.length** (number) - number of characters in text
 
-**.textAlign** (string)
+**.contentEditable** (boolean) - make the text editable by user
 
-**.length** (number)
+**.autoSize** (boolean) - resize the layout automatically to fit the content
 
-**.autoSize** (true,false)
-
-**.setup** (true,false)
+**.setup** (boolean) - show a transparent background to outline the layer's size
 
 		
 ## Methods
 
-**.toUpperCase()**
+**.toUpperCase()** - convert text to all caps
 
-**.toLowerCase()**
+**.toLowerCase()** - convert text to all lowercase
