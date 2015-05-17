@@ -93,3 +93,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 **.autoSize** (boolean) - resize the layout automatically to fit the content
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
+
+##Contact
+
+Twitter: [@andreaswah](http://twitter.com/andreaswah)
+
