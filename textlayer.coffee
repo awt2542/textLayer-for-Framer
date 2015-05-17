@@ -37,6 +37,7 @@ class module.exports extends Layer
 		set: (boolean) ->
 			@_element.contentEditable = boolean
 			@on Events.Click, -> return # make clicking text work in Framer Studio
+			@on "input", -> @calcSize()
 	@define "text",
 		get: -> @_element.textContent
 		set: (value) ->
@@ -73,5 +74,3 @@ class module.exports extends Layer
 		get: -> @text.length
 	toUpperCase: -> @setStyle("text-transform", value)
 	toLowerCase: -> @setStyle("text-transform", value)
-	
-	
