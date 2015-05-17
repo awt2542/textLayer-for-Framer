@@ -56,6 +56,12 @@ class module.exports extends Layer
 	@define "fontWeight", 
 		get: -> @style.fontWeight 
 		set: (value) -> @setStyle("fontWeight", value)
+	@define "padding",
+		set: (value) -> 
+			@setStyle("paddingTop", value, true)
+			@setStyle("paddingRight", value, true)
+			@setStyle("paddingBottom", value, true)
+			@setStyle("paddingLeft", value, true)
 	@define "paddingTop", 
 		get: -> @style.paddingTop.replace("px","")
 		set: (value) -> @setStyle("paddingTop", value, true)
