@@ -33,6 +33,11 @@ class module.exports extends Layer
 		set: (value) -> 
 			@doAutoSize = value
 			if @doAutoSize then @calcSize()
+	@define "contentEditable",
+		set: (boolean) ->
+			@_element.contentEditable = boolean
+			@ignoreEvents = boolean
+			@on Events.Click, -> return # make clicking text work in Framer Studio
 	@define "text",
 		get: -> @_element.textContent
 		set: (value) ->
