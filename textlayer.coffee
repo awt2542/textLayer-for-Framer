@@ -70,7 +70,8 @@ class module.exports extends Layer
 		set: (value) -> @setStyle("paddingLeft", value, true)
 	@define "textAlign",
 		set: (value) -> @setStyle("textAlign", value)
+	@define "textTransform", 
+		get: -> @style.textTransform 
+		set: (value) -> @setStyle("textTransform", value)
 	@define "length", 
 		get: -> @text.length
-	toUpperCase: -> @setStyle("text-transform", value)
-	toLowerCase: -> @setStyle("text-transform", value)

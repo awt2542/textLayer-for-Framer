@@ -40,8 +40,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 	t = new TextLayer
 		text: "This is a headline"
 		setup: true
-		width: 180
-		height: 25
+		autoSize: true
+		paddingRight: 20
 		paddingLeft: 20
 		
 ### Make text editable by user (input fields)
@@ -82,6 +82,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.textAlign** (string) - adjust alignment
 
+**.textTransform** (string) - text transform using uppercase, lowercase or capitalize
+
 **.length** (number) - number of characters in text
 
 **.contentEditable** (boolean) - make the text editable by user
@@ -89,10 +91,3 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 **.autoSize** (boolean) - resize the layout automatically to fit the content
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
-
-		
-## Methods
-
-**.toUpperCase()** - convert text to all caps
-
-**.toLowerCase()** - convert text to all lowercase
