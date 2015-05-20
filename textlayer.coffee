@@ -2,6 +2,7 @@ class module.exports extends Layer
 		
 	constructor: (options={}) ->
 		@doAutoSize = false
+		@doAutoSizeHeight = false
 		options.backgroundColor ?= if options.setup then "hsla(60, 90%, 47%, .4)" else "transparent"
 		options.color ?= "red"
 		options.lineHeight ?= 1.25
@@ -24,7 +25,10 @@ class module.exports extends Layer
 			paddingBottom: @style["padding-bottom"]
 			paddingLeft: @style["padding-left"]
 			textTransform: @style["text-transform"]
-		size = Utils.textSize @text, sizeAffectingStyles
+			borderWidth: @style["border-width"]
+		constraints = {}
+		if @doAutoSizeHeight then constraints.width = @width
+		size = Utils.textSize @text, sizeAffectingStyles, constraints
 		@width = size.width
 		@height = size.height
 
@@ -32,6 +36,11 @@ class module.exports extends Layer
 		get: -> @doAutoSize
 		set: (value) -> 
 			@doAutoSize = value
+			if @doAutoSize then @calcSize()
+	@define "autoSizeHeight",
+		set: (value) -> 
+			@doAutoSize = value
+			@doAutoSizeHeight = value
 			if @doAutoSize then @calcSize()
 	@define "contentEditable",
 		set: (boolean) ->
