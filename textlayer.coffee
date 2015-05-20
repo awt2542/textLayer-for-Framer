@@ -36,7 +36,7 @@ class module.exports extends Layer
 	@define "contentEditable",
 		set: (boolean) ->
 			@_element.contentEditable = boolean
-			@on Events.Click, -> return # make clicking text work in Framer Studio
+			@ignoreEvents = !boolean
 			@on "input", -> @calcSize()
 	@define "text",
 		get: -> @_element.textContent
