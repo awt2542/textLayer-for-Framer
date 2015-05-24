@@ -90,7 +90,9 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.contentEditable** (boolean) - make the text editable by user
 
-**.autoSize** (boolean) - resize the layout automatically to fit the content
+**.autoSize** (boolean) - resize the layer to automatically to fit text the content
+
+**.autoSizeHeight** (boolean) - resize the height of the layer to automatically to fit the text content. great for fixed width columns
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
 
