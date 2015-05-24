@@ -13,6 +13,7 @@ class module.exports extends Layer
 		
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
+		@emit("change:#{property}", value)
 		if @doAutoSize then @calcSize()
 		
 	calcSize: ->
