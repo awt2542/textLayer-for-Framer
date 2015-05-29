@@ -49,9 +49,9 @@ class module.exports extends Layer
 			@ignoreEvents = !boolean
 			@on "input", -> @calcSize()
 	@define "text",
-		get: -> @_element.textContent
+		get: -> @html
 		set: (value) ->
-			@_element.textContent = value
+			@html = value
 			@emit("change:text", value)
 			if @doAutoSize then @calcSize()
 	@define "fontFamily", 
