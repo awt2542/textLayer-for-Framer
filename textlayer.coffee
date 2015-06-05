@@ -27,6 +27,7 @@ class module.exports extends Layer
 			paddingLeft: @style["padding-left"]
 			textTransform: @style["text-transform"]
 			borderWidth: @style["border-width"]
+			letterSpacing: @style["letter-spacing"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
@@ -91,3 +92,6 @@ class module.exports extends Layer
 		set: (value) -> @setStyle("textTransform", value)
 	@define "length", 
 		get: -> @text.length
+	@define "letterSpacing", 
+		get: -> @style.letterSpacing.replace("px","")
+		set: (value) -> @setStyle("letterSpacing", value, true)
