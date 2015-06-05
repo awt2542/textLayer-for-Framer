@@ -31,7 +31,11 @@ class module.exports extends Layer
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
-		@width = size.width
+		if @style.textAlign is "right"
+			@width = size.width
+			@x = @x-@width
+		else
+			@width = size.width
 		@height = size.height
 
 	@define "autoSize",
