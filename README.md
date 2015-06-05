@@ -72,6 +72,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.fontWeight** (string) - weight of font
 
+**.letterSpacing** (number) - letter spacing
+
 **.padding** (number) - padding on all sides
 
 **.paddingTop** (number) - padding above text
