@@ -70,6 +70,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.lineHeight** (number) - line height (default is 1.25)
 
+**.letterSpacing** (number) - letter spacing (default is 0)
+
 **.fontWeight** (string) - weight of font
 
 **.letterSpacing** (number) - letter spacing
