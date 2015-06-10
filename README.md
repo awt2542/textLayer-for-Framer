@@ -74,6 +74,10 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.fontWeight** (string) - weight of font
 
+**.fontStyle** (string) - styling of font eg. "normal", "italic", "oblique"
+
+**.fontVariant** (string) - font variant
+
 **.letterSpacing** (number) - letter spacing
 
 **.padding** (number) - padding on all sides
