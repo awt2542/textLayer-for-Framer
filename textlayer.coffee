@@ -29,6 +29,7 @@ class module.exports extends Layer
 			borderWidth: @style["border-width"]
 			letterSpacing: @style["letter-spacing"]
 			fontFamily: @style["font-family"]
+			fontStyle: @style["font-style"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
@@ -72,6 +73,9 @@ class module.exports extends Layer
 	@define "fontWeight", 
 		get: -> @style.fontWeight 
 		set: (value) -> @setStyle("fontWeight", value)
+	@define "fontStyle", 
+		get: -> @style.fontStyle
+		set: (value) -> @setStyle("fontStyle", value)
 	@define "padding",
 		set: (value) -> 
 			@setStyle("paddingTop", value, true)
