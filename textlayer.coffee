@@ -10,7 +10,7 @@ class module.exports extends Layer
 		options.fontSize ?= 20
 		options.text ?= "Use layer.text to add text"
 		super options
-		
+	
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
 		@emit("change:#{property}", value)
@@ -28,6 +28,7 @@ class module.exports extends Layer
 			textTransform: @style["text-transform"]
 			borderWidth: @style["border-width"]
 			letterSpacing: @style["letter-spacing"]
+			fontFamily: @style["font-family"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
