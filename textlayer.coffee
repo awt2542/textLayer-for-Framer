@@ -30,6 +30,7 @@ class module.exports extends Layer
 			letterSpacing: @style["letter-spacing"]
 			fontFamily: @style["font-family"]
 			fontStyle: @style["font-style"]
+			fontVariant: @style["font-variant"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
@@ -76,6 +77,9 @@ class module.exports extends Layer
 	@define "fontStyle", 
 		get: -> @style.fontStyle
 		set: (value) -> @setStyle("fontStyle", value)
+	@define "fontVariant", 
+		get: -> @style.fontVariant
+		set: (value) -> @setStyle("fontVariant", value)
 	@define "padding",
 		set: (value) -> 
 			@setStyle("paddingTop", value, true)
