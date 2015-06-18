@@ -11,7 +11,7 @@ Framer.js module that simplifies the process of adding text to your prototypes.
 3. Add `TextLayer = require 'textlayer'` at the top of your document (case-sensitive).
 
 
-More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules]http://framerjs.com/docs/#modules)
+More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules)
 
 
 ## Examples
