@@ -10,6 +10,7 @@ class module.exports extends Layer
 		options.fontSize ?= 20
 		options.text ?= "Use layer.text to add text"
 		super options
+		@style.whiteSpace = "pre-line" # allow \n in .text
 		
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
@@ -27,10 +28,18 @@ class module.exports extends Layer
 			paddingLeft: @style["padding-left"]
 			textTransform: @style["text-transform"]
 			borderWidth: @style["border-width"]
+			letterSpacing: @style["letter-spacing"]
+			fontFamily: @style["font-family"]
+			fontStyle: @style["font-style"]
+			fontVariant: @style["font-variant"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
-		@width = size.width
+		if @style.textAlign is "right"
+			@width = size.width
+			@x = @x-@width
+		else
+			@width = size.width
 		@height = size.height
 
 	@define "autoSize",
@@ -47,7 +56,7 @@ class module.exports extends Layer
 		set: (boolean) ->
 			@_element.contentEditable = boolean
 			@ignoreEvents = !boolean
-			@on "input", -> @calcSize()
+			@on "input", -> @calcSize() if @doAutoSize
 	@define "text",
 		get: -> @_element.textContent
 		set: (value) ->
@@ -66,6 +75,12 @@ class module.exports extends Layer
 	@define "fontWeight", 
 		get: -> @style.fontWeight 
 		set: (value) -> @setStyle("fontWeight", value)
+	@define "fontStyle", 
+		get: -> @style.fontStyle
+		set: (value) -> @setStyle("fontStyle", value)
+	@define "fontVariant", 
+		get: -> @style.fontVariant
+		set: (value) -> @setStyle("fontVariant", value)
 	@define "padding",
 		set: (value) -> 
 			@setStyle("paddingTop", value, true)
@@ -89,5 +104,8 @@ class module.exports extends Layer
 	@define "textTransform", 
 		get: -> @style.textTransform 
 		set: (value) -> @setStyle("textTransform", value)
+	@define "letterSpacing", 
+		get: -> @style.letterSpacing.replace("px","")
+		set: (value) -> @setStyle("letterSpacing", value, true)
 	@define "length", 
 		get: -> @text.length
