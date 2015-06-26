@@ -10,7 +10,7 @@ class module.exports extends Layer
 		options.fontSize ?= 20
 		options.text ?= "Use layer.text to add text"
 		super options
-		
+	
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
 		@emit("change:#{property}", value)
@@ -27,10 +27,18 @@ class module.exports extends Layer
 			paddingLeft: @style["padding-left"]
 			textTransform: @style["text-transform"]
 			borderWidth: @style["border-width"]
+			letterSpacing: @style["letter-spacing"]
+			fontFamily: @style["font-family"]
+			fontStyle: @style["font-style"]
+			fontVariant: @style["font-variant"]
 		constraints = {}
 		if @doAutoSizeHeight then constraints.width = @width
 		size = Utils.textSize @text, sizeAffectingStyles, constraints
-		@width = size.width
+		if @style.textAlign is "right"
+			@width = size.width
+			@x = @x-@width
+		else
+			@width = size.width
 		@height = size.height
 
 	@define "autoSize",
@@ -49,9 +57,9 @@ class module.exports extends Layer
 			@ignoreEvents = !boolean
 			@on "input", -> @calcSize()
 	@define "text",
-		get: -> @_element.textContent
+		get: -> @html
 		set: (value) ->
-			@_element.textContent = value
+			@html = value
 			@emit("change:text", value)
 			if @doAutoSize then @calcSize()
 	@define "fontFamily", 
@@ -66,6 +74,12 @@ class module.exports extends Layer
 	@define "fontWeight", 
 		get: -> @style.fontWeight 
 		set: (value) -> @setStyle("fontWeight", value)
+	@define "fontStyle", 
+		get: -> @style.fontStyle
+		set: (value) -> @setStyle("fontStyle", value)
+	@define "fontVariant", 
+		get: -> @style.fontVariant
+		set: (value) -> @setStyle("fontVariant", value)
 	@define "padding",
 		set: (value) -> 
 			@setStyle("paddingTop", value, true)
@@ -91,3 +105,6 @@ class module.exports extends Layer
 		set: (value) -> @setStyle("textTransform", value)
 	@define "length", 
 		get: -> @text.length
+	@define "letterSpacing", 
+		get: -> @style.letterSpacing.replace("px","")
+		set: (value) -> @setStyle("letterSpacing", value, true)
