@@ -6,9 +6,9 @@ Framer.js module that simplifies the process of adding text to your prototypes.
 
 ## Installation
 
-1. Download the textlayer.coffee file
-2. Create a framer project and drop textlayer.coffee inside the /modules folder
-3. Add `TextLayer = require 'textlayer'` at the top of your document (case-sensitive).
+1. Download the TextLayer.coffee file
+2. Create a framer project and drop TextLayer.coffee inside the /modules folder
+3. Add `TextLayer = require 'TextLayer'` at the top of your document (case-sensitive).
 
 
 More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules)
