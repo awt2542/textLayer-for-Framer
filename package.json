@@ -1,0 +1,30 @@
+{
+  "name": "framer-textlayer",
+  "version": "0.1.0",
+  "description": "Framer.js module that simplifies the process of adding text to your prototypes.",
+  "main": "TextLayer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "coffee --compile TextLayer.coffee"
+  },
+  "author": "awt2542",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WestonThayer/textLayer-for-Framer"
+  },
+  "bugs": {
+    "url": "https://github.com/WestonThayer/textLayer-for-Framer/issues"
+  },
+  "keywords": [
+    "framerjs",
+    "framer",
+    "TextLayer"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "files": [
+    "TextLayer.js"
+  ]
+}
