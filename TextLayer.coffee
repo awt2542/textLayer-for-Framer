@@ -109,3 +109,11 @@ class module.exports extends Layer
 		set: (value) -> @setStyle("letterSpacing", value, true)
 	@define "length", 
 		get: -> @text.length
+
+Layer::frameAsTextLayer = (properties) ->
+    t = new TextLayer
+    t.frame = @frame
+    t.superLayer = @superLayer
+    _.extend t,properties
+    @destroy()
+    t
