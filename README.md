@@ -6,13 +6,38 @@ Framer.js module that simplifies the process of adding text to your prototypes.
 
 ## Installation
 
-1. Download the TextLayer.coffee file
-2. Create a framer project and drop TextLayer.coffee inside the /modules folder
-3. Add `TextLayer = require 'TextLayer'` at the top of your document (case-sensitive).
+Tested in [Framer Studio](http://framerjs.com) and [framer-cli](https://github.com/peteschaffner/framer-cli).
 
+1. Run `npm install framer-textlayer` in your prototype's directory (usually MyPrototype.framer/)
+2. Add a reference framer-textlayer by adding `textlayer = require("framer-textlayer")`. Where you do this depends on whether you're using Framer Studio or framer-cli
 
-More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules)
+## Framer Studio
 
+If you're using Framer Studio, you need to create an `npm.coffee` file in your modules folder, per [these instructions](http://framerjs.com/docs/#modules-npm-example).
+
+`MyPrototype.framer/modules/npm.coffee`
+
+```coffeescript
+# npm.coffee is a simple module wrapper
+exports.textlayer = require("framer-textlayer")
+# You could require more npm modules that you have installed on additional lines. For example, assuming you have backbone installed:
+#exports.backbone = require("backbone")
+```
+
+`MyPrototype.framer/app.coffee`
+
+```coffeescript
+npm = require("npm") # reference to your npm wrapper module
+TextLayer = npm.textlayer # now you have direct access to the framer-textlayer npm module
+```
+
+## framer-cli
+
+`index.coffee` (or index.js)
+
+```coffeescript
+pep = require("framer-textlayer")
+```
 
 ## Examples
 
