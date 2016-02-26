@@ -1,4 +1,4 @@
-class module.exports extends Layer
+class TextLayer extends Layer
 		
 	constructor: (options={}) ->
 		@doAutoSize = false
@@ -117,3 +117,6 @@ Layer::frameAsTextLayer = (properties) ->
     _.extend t,properties
     @destroy()
     t
+
+
+module.exports = TextLayer
