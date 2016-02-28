@@ -1,6 +1,9 @@
 # TextLayer for Framer.js
 
+
 Framer.js module that simplifies the process of adding text to your prototypes.
+
+NOTE: Latest version needs curly brackets when importing (see install instructions)
 
 ![TextLayer](http://cl.ly/image/3q2m1q1w0x2w/TextLayer.png)
 
@@ -8,7 +11,7 @@ Framer.js module that simplifies the process of adding text to your prototypes.
 
 1. Download the TextLayer.coffee file
 2. Create a framer project and drop TextLayer.coffee inside the /modules folder
-3. Add `TextLayer = require 'TextLayer'` at the top of your document (case-sensitive).
+3. Add `{TextLayer} = require 'TextLayer'` at the top of your document (case-sensitive).
 
 
 More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules)
@@ -103,6 +106,8 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 **.autoSizeHeight** (boolean) - resize the height of the layer to automatically to fit the text content. great for fixed width columns
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
+
+**.convertToTextLayer() - converts an imported layer to a TextLayer
 
 ##Contact
 

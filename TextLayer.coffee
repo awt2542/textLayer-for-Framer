@@ -110,6 +110,43 @@ class TextLayer extends Layer
 	@define "length", 
 		get: -> @text.length
 
+convertToTextLayer = (layer) ->
+	t = new TextLayer
+		name: layer.name
+		frame: layer.frame
+		parent: layer.parent
+		#backgroundColor: 'yellow'
+	
+	cssObj = {}
+	css = layer._info.metadata.css
+	css.forEach (rule) ->
+		return if _.contains rule, '/*'
+		arr = rule.split(': ')
+		cssObj[arr[0]] = arr[1].replace(';','')
+	t.style = cssObj
+	
+	importPath = layer.__framerImportedFromPath
+	if _.contains importPath, '@2x'
+		t.fontSize *= 2
+		t.lineHeight = (parseInt(t.lineHeight)*2)+'px'
+		t.letterSpacing *= 2
+					
+	t.y -= t.fontSize * 0.225
+	t.width += t.fontSize * 0.3
+
+	t.text = layer._info.metadata.string
+	layer.destroy()
+	return t
+
+Layer::convertToTextLayer = -> convertToTextLayer(@)
+
+convertTextLayers = (obj) ->
+	for prop,layer of obj
+		if layer._info.metadata.string?
+			obj[prop] = convertToTextLayer(layer)
+			layer.destroy()
+
+# Backwards compability. Replaced by convertToTextLayer()
 Layer::frameAsTextLayer = (properties) ->
     t = new TextLayer
     t.frame = @frame
@@ -118,5 +155,5 @@ Layer::frameAsTextLayer = (properties) ->
     @destroy()
     t
 
-
-module.exports = TextLayer
+exports.TextLayer = TextLayer
+exports.convertTextLayers = convertTextLayers
