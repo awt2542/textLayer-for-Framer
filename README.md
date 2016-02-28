@@ -107,7 +107,7 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
 
-**.convertToTextLayer() - converts an imported layer to a TextLayer
+**.convertToTextLayer()** - converts an imported layer to a TextLayer
 
 ##Contact
 
