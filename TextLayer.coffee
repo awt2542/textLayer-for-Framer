@@ -144,7 +144,6 @@ convertTextLayers = (obj) ->
 	for prop,layer of obj
 		if layer._info.metadata.string?
 			obj[prop] = convertToTextLayer(layer)
-			layer.destroy()
 
 # Backwards compability. Replaced by convertToTextLayer()
 Layer::frameAsTextLayer = (properties) ->
