@@ -142,7 +142,7 @@ Layer::convertToTextLayer = -> convertToTextLayer(@)
 
 convertTextLayers = (obj) ->
 	for prop,layer of obj
-		if layer._info.metadata.string?
+		if layer._info.kind is "text"
 			obj[prop] = convertToTextLayer(layer)
 
 # Backwards compability. Replaced by convertToTextLayer()
