@@ -115,7 +115,6 @@ convertToTextLayer = (layer) ->
 		name: layer.name
 		frame: layer.frame
 		parent: layer.parent
-		#backgroundColor: 'yellow'
 	
 	cssObj = {}
 	css = layer._info.metadata.css
@@ -131,8 +130,10 @@ convertToTextLayer = (layer) ->
 		t.lineHeight = (parseInt(t.lineHeight)*2)+'px'
 		t.letterSpacing *= 2
 					
-	t.y -= t.fontSize * 0.225
-	t.width += t.fontSize * 0.3
+	t.y -= (parseInt(t.lineHeight)-t.fontSize)/2 # compensate for how CSS handles line height
+	t.y -= t.fontSize * 0.1 # sketch padding
+	t.x -= t.fontSize * 0.08 # sketch padding
+	t.width += t.fontSize * 0.5 # sketch padding
 
 	t.text = layer._info.metadata.string
 	layer.destroy()
