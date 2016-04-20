@@ -11,6 +11,7 @@ class TextLayer extends Layer
 		options.text ?= "Use layer.text to add text"
 		super options
 		@style.whiteSpace = "pre-line" # allow \n in .text
+		@style.outline = "none" # no border when selected
 		
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
