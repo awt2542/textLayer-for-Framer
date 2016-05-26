@@ -32,6 +32,13 @@ More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com
 		
 	t.center()
 
+### Convert imported layers to TextLayers
+
+Make sure the text layer in Sketch is inside a group. There can be no other layers inside that group.
+
+	title = sketch.title.convertToTextLayer()
+	title.text = "Custom text"
+
 ### AutoSize based on text length and styling
 
 	t = new TextLayer
