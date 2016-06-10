@@ -120,13 +120,13 @@ convertToTextLayer = (layer) ->
 	cssObj = {}
 	css = layer._info.metadata.css
 	css.forEach (rule) ->
-		return if _.contains rule, '/*'
+		return if _.includes rule, '/*'
 		arr = rule.split(': ')
 		cssObj[arr[0]] = arr[1].replace(';','')
 	t.style = cssObj
 	
 	importPath = layer.__framerImportedFromPath
-	if _.contains importPath, '@2x'
+	if _.includes importPath, '@2x'
 		t.fontSize *= 2
 		t.lineHeight = (parseInt(t.lineHeight)*2)+'px'
 		t.letterSpacing *= 2
