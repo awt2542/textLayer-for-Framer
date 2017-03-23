@@ -1,5 +1,6 @@
 # TextLayer for Framer.js
 
+Update 23/3: TextLayer is now a native feature of Framer.
 
 Framer.js module that simplifies the process of adding text to your prototypes.
 
