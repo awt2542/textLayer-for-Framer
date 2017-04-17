@@ -117,6 +117,6 @@ Make sure the text layer in Sketch is inside a group. There can be no other laye
 
 **.convertToTextLayer()** - converts an imported layer to a TextLayer
 
-##Contact
+## Contact
 
 Twitter: [@andreaswah](http://twitter.com/andreaswah)
