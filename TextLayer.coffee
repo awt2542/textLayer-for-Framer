@@ -1,3 +1,4 @@
+# TODO: Rename this class so there aren't namespace conflicts.
 class TextLayer extends Layer
 		
 	constructor: (options={}) ->
@@ -111,41 +112,72 @@ class TextLayer extends Layer
 	@define "length", 
 		get: -> @text.length
 
-convertToTextLayer = (layer) ->
+convertToTextLayer = (layer, debug) ->
+
+	# Create a text layer with all the basic properties.
 	t = new TextLayer
 		name: layer.name
 		frame: layer.frame
 		parent: layer.parent
-	
-	cssObj = {}
-	css = layer._info.metadata.css
-	css.forEach (rule) ->
-		return if _.includes rule, '/*'
-		arr = rule.split(': ')
-		cssObj[arr[0]] = arr[1].replace(';','')
-	t.style = cssObj
-	
-	importPath = layer.__framerImportedFromPath
-	if _.includes importPath, '@2x'
-		t.fontSize *= 2
-		t.lineHeight = (parseInt(t.lineHeight)*2)+'px'
-		t.letterSpacing *= 2
-					
-	t.y -= (parseInt(t.lineHeight)-t.fontSize)/2 # compensate for how CSS handles line height
-	t.y -= t.fontSize * 0.1 # sketch padding
-	t.x -= t.fontSize * 0.08 # sketch padding
-	t.width += t.fontSize * 0.5 # sketch padding
+		text: layer._info.metadata.string
 
-	t.text = layer._info.metadata.string
-	layer.destroy()
+	# Object for style props.
+	styleObj = {}
+	
+	# Get CSS from metadata.
+	css = layer._info.metadata.css
+
+	# Go through each rule
+	css.forEach (rule) ->
+
+		# Ditch the dumb layer name.
+		return if _.includes rule, '/*'
+		
+		# Split the key and value out
+		arr = rule.split(': ')
+		
+		#Format the key and value properly
+		prop = _.camelCase(arr[0])
+		value = arr[1].replace(';','')
+		
+		#Convert to numbers for numeric properties
+		if ["fontSize","letterSpacing","lineHeight"].indexOf(prop) > -1
+			value = parseInt(value) 
+
+		# Set the key and value in styleObj
+		styleObj[prop] = value
+		
+	# Set the line-height as a proportion instead of pixel value.
+	if styleObj.hasOwnProperty("lineHeight")
+		styleObj["lineHeight"] =  styleObj.lineHeight / styleObj.fontSize
+	else
+		styleObj["lineHeight"] = 1.3
+ 		# TODO: Find a way to properly set text line-height for auto values in Sketch.
+ 		# Currently auto line-heights vary by font, so this is just setting a fallback arbitrarily.
+	
+	
+	# Set the properties for every key in styleObj
+	for key, val of styleObj
+		t[key] = val
+
+	# Offsets to compensate for Sketch's padding.
+	t.y -= (t.fontSize / t.lineHeight) / (4 - t.lineHeight)
+	t.x -= t.fontSize * 0.07
+	t.width += t.fontSize * 0.5
+
+	# Set up debug: if true, it doesn't destroy the layer so you can
+	# manually position line-height and stuff.  Helpful.
+	if debug then layer.opacity = .5 else layer.destroy()
+	
 	return t
 
-Layer::convertToTextLayer = -> convertToTextLayer(@)
+Layer::convertToTextLayer = (debug) -> convertToTextLayer(@, debug)
 
-convertTextLayers = (obj) ->
+convertTextLayers = (obj, debug) ->
 	for prop,layer of obj
 		if layer._info.kind is "text"
-			obj[prop] = convertToTextLayer(layer)
+			obj[prop] = convertToTextLayer(layer, debug)
+
 
 # Backwards compability. Replaced by convertToTextLayer()
 Layer::frameAsTextLayer = (properties) ->

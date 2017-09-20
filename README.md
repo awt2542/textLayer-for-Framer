@@ -12,7 +12,7 @@ NOTE: Latest version needs curly brackets when importing (see install instructio
 
 1. Download the TextLayer.coffee file
 2. Create a framer project and drop TextLayer.coffee inside the /modules folder
-3. Add `{TextLayer} = require 'TextLayer'` at the top of your document (case-sensitive).
+3. Add `{TextLayer, convertTextLayers} = require 'TextLayer'` at the top of your document (case-sensitive).
 
 
 More info about modules in Framer: [FramerJS Docs - Modules](http://framerjs.com/docs/#modules)
@@ -39,6 +39,19 @@ Make sure the text layer in Sketch is inside a group. There can be no other laye
 
 	title = sketch.title.convertToTextLayer()
 	title.text = "Custom text"
+
+#### Debug mode for converted layers
+
+Optionally include a boolean when converting.  This doesn't destroy the original sketch layer, allowing you to fine tune the converted layer to pixel perfection.
+
+	title = sketch.title.convertToTextLayer(true)
+
+#### Convert all text layers from sketch
+
+Function to convert all text layers from Sketch to editable layers.  Optionally include true to use debuggin.  Example:
+
+	sketch = Framer.Importer.load("imported/example@2x", scale: 1)
+	convertTextLayers(sketch, true)
 
 ### AutoSize based on text length and styling
 
@@ -115,7 +128,7 @@ Make sure the text layer in Sketch is inside a group. There can be no other laye
 
 **.setup** (boolean) - show a transparent background to outline the layer's size
 
-**.convertToTextLayer()** - converts an imported layer to a TextLayer
+**.convertToTextLayer(debug)** - converts an imported layer to a TextLayer. Optionally pass true for debug argument to keep original layer.
 
 ## Contact
 
