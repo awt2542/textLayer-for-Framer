@@ -129,7 +129,3 @@ Function to convert all text layers from Sketch to editable layers.  Optionally 
 **.setup** (boolean) - show a transparent background to outline the layer's size
 
 **.convertToTextLayer(debug)** - converts an imported layer to a TextLayer. Optionally pass true for debug argument to keep original layer.
-
-## Contact
-
-Twitter: [@andreaswah](http://twitter.com/andreaswah)
